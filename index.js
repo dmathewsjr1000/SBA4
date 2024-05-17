@@ -13,23 +13,23 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 // Logging Middleware
- app.use((req, res, next) => {
-   const time = new Date();
+app.use((req, res, next) => {
+  const time = new Date();
 
-   console.log(`-----
+  console.log(`-----
      ${time.toLocaleTimeString()}: Received a ${req.method} request to ${
-     req.url
-   }.`);
-   if (Object.keys(req.body).length > 0) {
-     console.log("Containing the data:");
-     console.log(`${JSON.stringify(req.body)}`);
-   }
-   next();
- });
+    req.url
+  }.`);
+  if (Object.keys(req.body).length > 0) {
+    console.log("Containing the data:");
+    console.log(`${JSON.stringify(req.body)}`);
+  }
+  next();
+});
 // Use our Routes
-   app.use("/api/users", users);
-   app.use("/api/company", company);
-// Landing route for get 
+app.use("/api/users", users);
+app.use("/api/company", company);
+// Landing route for get
 app.get("/", (req, res) => {
   res.send(
     "Welcome to Thugs Inc. a new startup company who is going to change the game... "
