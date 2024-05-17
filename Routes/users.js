@@ -1,28 +1,25 @@
 // Declaring Variables and requring Express
-
 const express = require("express");
 const router = express.Router();
-
+// Get Data from Dummy Database and Error handler
 const users = require("../Data/users");
 const error = require("../Utilities/error");
-
-// Routing pand and exporting at the end of the file
-
+// Routing paths plus CRUD operations on request and exporting at the end of the file
 router
     .route("/")
     .get((req, res) => {
         res.json(users);
     })
     .post((req, res, next) => {
-        if (req.body.name && req.body.username && req.body.email) {
-            if (users.find((u) => u.username == req.body.username)) {
-                next(error(409, "Username Already Taken"));
+        if (req.body.name && req.body.lastnamename) {
+            if (users.find((u) => u.name && u.lastname == req.body.name && req.body.lastname)) {
+                next(error(409, "Name already exist in DB"));
             }
 
             const user = {
                 id: users[users.length - 1].id + 1,
                 name: req.body.name,
-                username: req.body.username,
+                lastname: req.body.lastnamename,
                 email: req.body.email,
             };
 
@@ -58,4 +55,4 @@ router
         else next();
     });
 
-    module.exports = router;
+ module.exports = router;

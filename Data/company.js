@@ -46,3 +46,5 @@ const company = [
         role: "The assistor of the President",
     },
 ]
+
+module.exports = company;

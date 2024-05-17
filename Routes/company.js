@@ -1,20 +1,23 @@
-
+// Declaring Variables and requring Express
 const express = require("express");
 const router = express.Router();
-
+// Get Data from Dummy Database and Error handler
 const company = require("../Data/company");
 const error = require("../Utilities/error");
-
-
+// Routing paths plus CRUD operations on request and exporting at the end of the file
 router
     .route("/")
     .get((req, res) => {
         res.json(company);
     })
     .post((req, res, next) => {
-        if (req.body.employeeid && req.body.companyname && req.body.dept && req.body.jobtitle && req.body.role) {
+        if (req.body.employeeid  && req.body.jobtitle) {
+            if (company.find((c) => c.employeeid && c.jobtitle  == req.body.employeeid && req.body.jobtitle )) {
+                next(error(409, "The position has been filled"));
+            }
+
             const companys = {
-                id: companys[companys.length - 1].id + 1,
+                id: company[companys.length - 1].id + 1,
                 employeeid: req.body.employeeid,
                 companyname: req.body.companyname,
                 dept: req.body.dept,
@@ -59,4 +62,4 @@ router
         else next();
     });
 
-    module.exports = router;
+module.exports = router;

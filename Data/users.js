@@ -35,7 +35,7 @@ const users = [
         id: 6,
         name: "Drew",
         lastname: "Russell",
-        email: "Drew.Russell",
+        email: "Drew.Russell@example.com",
     },
 ];
 
